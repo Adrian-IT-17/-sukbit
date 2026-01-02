@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SUKBIT - Handwoven Filipino Bags</title>
+
+  <!-- Explicit weights so Cormorant doesn't render bold -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --brand-cream: #f6f1ea;
+      --brand-brown: #9b846a;
+      --bg-light: #f7efe9;
+      --text-brown: #4a3a2a;
+      --carousel-gap: 28; /* px */
+      --arrow-gutter: 92;  /* px reserved left/right in wrapper for arrows */
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+    body{
+      font-family:'Montserrat',sans-serif;
+      background:#e8ddd0;
+      color:var(--text-brown);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* Make sure Cormorant headings are rendered in light weight and not artificially bolded */
+    .cg-display, .cg-display * {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      font-synthesis: none;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* HEADER */
+    header {
+      background:linear-gradient(135deg,#a89278 0%,var(--brand-brown) 100%);
+      padding:15px 50px;
+      position:sticky; top:0; z-index:1000;
+    }
+    nav{display:flex;align-items:center;justify-content:space-between;max-width:1400px;margin:0 auto}
+    .logo{display:inline-flex;align-items:center;gap:6px;cursor:pointer;color:#fff}
+    .logo img{height:34px;display:block;margin-right:-10px;filter:brightness(1.02) saturate(0.95)}
+    .logo span{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:#fff;transform:translateY(1px)}
+    .nav-links{display:flex;gap:30px;list-style:none}
+    .nav-links a{color:#fff;text-decoration:none;font-size:11px;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icons{display:flex;gap:18px;color:#fff;font-size:11px;align-items:center}
+    .nav-icon{cursor:pointer;transition:all 0.3s ease;padding:8px 16px;border-radius:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.1);backdrop-filter:blur(10px);font-family:'Montserrat',sans-serif;font-weight:400;letter-spacing:1.2px;text-transform:uppercase}
+    .nav-icon:hover{background:rgba(255,255,255,0.2);transform:scale(1.05)}
+
+    /* HERO */
+    .hero{
+      position:relative;
+      height:64vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.42), rgba(0,0,0,0.16));
+    }
+    .hero-bags{position:absolute;inset:0;z-index:0;pointer-events:none;background-size:cover;background-position:center}
+
+    .hero-content{position:relative;z-index:2;width:100%;display:flex;align-items:center;justify-content:center}
+    .hero-title-wrap{position:relative;max-width:1400px;width:100%;display:flex;justify-content:center;align-items:flex-start}
+
+    /* Tagline placed top-right of the SUKBIT composition. Uses Cormorant to match the heading. */
+    .hero-tagline{
+      position:absolute;
+      right:11.5%;  /* tuned for the proportion in your reference */
+      top:4%;
+      color:var(--brand-cream);
+      font-family:'Cormorant Garamond',serif;
+      font-weight:400;
+      font-size:20px;
+      letter-spacing:1px;
+      z-index:6;
+      text-align:right;
+      white-space:nowrap;
+      text-shadow: 0 1px 0 rgba(0,0,0,0.06);
+    }
+
+    /* SUKBIT composition */
+    .hero-title{display:flex;align-items:baseline;justify-content:center;gap:0;margin-top:72px;position:relative}
+    /* Masked S (fill controlled by background) */
+  .s-mark {
+  display: inline-block;
+  width: 210px;
+  height: 210px;
+  background: var(--brand-cream);
+  -webkit-mask-image: url('0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-image: url('0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png');
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  transform-origin: 50% 30%;
+  transform: scaleY(1.17) translateY(12px) translateX(8px); /* slightly taller S */
+  filter: contrast(1.00) saturate(0.98);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.16);
+  z-index: 4;
+  pointer-events: none;
+  margin-right: -50px;
+}
+
+
+
+    .hero-title .cg-text{
+      color: var(--brand-cream);
+      font-family:'Cormorant Garamond',serif;
+      font-weight:400;
+      font-size:260px; /* large, matches reference */
+      letter-spacing:10px;
+      line-height:0.86;
+      text-shadow:2px 4px 10px rgba(0,0,0,0.18);
+      z-index:3;
+      display:inline-block;
+      margin-left: 0; /* keep letters baseline stable */
+    }
+
+    /* FONT INFO */
+    .font-info{padding:40px;text-align:center;background:#ebe5df}
+    .font-info h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:var(--text-brown);margin-bottom:8px}
+    .font-info p{font-size:14px;color:#6b5a45;letter-spacing:1px;text-transform:uppercase}
+
+    /* PRODUCTS - styled to match your provided images (font, spacing) */
+    .products{background:#b5a393;padding:70px 60px}
+    .products-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:35px;max-width:1300px;margin:0 auto}
+    .product{text-align:center;color:#fff}
+    .product-img{width:100%;height:240px;background:linear-gradient(135deg,#c8d8e8 0%,#a8c8d8 100%);margin-bottom:15px;border-radius:5px}
+    .product h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22px;letter-spacing:2px;text-transform:uppercase;color:var(--brand-cream);margin-bottom:6px}
+    .product p{font-size:14px;letter-spacing:1px;text-transform:uppercase;color:rgba(246,241,234,0.85);margin-bottom:10px}
+    .price{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:var(--brand-cream)}
+
+    /* FEATURES */
+    .features{padding:70px 60px;text-align:center;background:#efe7e1}
+    .features h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:32px;margin-bottom:45px;color:var(--text-brown)}
+    .features-grid{display:flex;justify-content:center;gap:80px;margin-bottom:35px}
+    .features-grid h3{font-family:'Cormorant Garamond',serif;font-weight:400;letter-spacing:2px;color:var(--text-brown);text-transform:uppercase}
+    .features p{font-size:14px;color:#6b5a45;letter-spacing:1px;text-transform:uppercase;font-family:'Montserrat',sans-serif;max-width:600px;margin:0 auto}
+
+    /* CATEGORIES */
+    .categories{background:#fff;padding:0;position:relative}
+    .categories-container{display:flex;align-items:stretch;min-height:400px;max-width:1200px;margin:0 auto;padding:0;gap:0}
+    .categories-sidebar{width:80px;display:flex;align-items:center;justify-content:center;padding:5px 0;background:var(--brand-brown)}
+    .categories-title{writing-mode:vertical-rl;transform:rotate(180deg);font-family:'Cormorant Garamond',serif;font-weight:400;font-size:18px;letter-spacing:3px;padding:5px 5px;border:none;color:var(--text-brown)}
+    .categories-right{flex:1;display:flex;flex-direction:column;background:#fff}
+    .categories-top-bar{display:none}
+    .categories-main{display:flex;gap:20px;align-items:center;padding:15px 20px;background:#fff}
+    .categories-desc-area{display:flex;flex-direction:column;gap:5px;min-width:120px}
+    .categories-desc{font-size:12px;letter-spacing:1px;color:var(--text-brown);font-family:'Montserrat',sans-serif;text-transform:uppercase}
+    .categories-arrow{font-size:32px;color:var(--text-brown);transform:translateX(4px);margin-top:-4px}
+
+    /* The important change: reserve gutter space via padding on wrapper so arrows don't overlap images.
+       JS uses the wrapper's inner width (clientWidth - padding) for sizing. */
+    .categories-images-wrapper{
+      flex:1;
+      position:relative;
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      min-width:0;
+      padding: 0 calc(var(--arrow-gutter) * 1px); /* reserves left/right space for arrows */
+    }
+
+    .categories-images{
+      display:flex;
+      gap: calc(var(--carousel-gap) * 1px);
+      transition: transform .45s cubic-bezier(.22,.9,.36,1);
+      will-change: transform;
+      align-items:center;
+      width:100%;
+    }
+
+    .slide{flex:0 0 auto;display:flex;justify-content:center;align-items:center;overflow:hidden;width:calc(50% - 14px)}
+    .cat-img{width:100%;height:300px;border:2px solid var(--brand-brown);background:linear-gradient(180deg,#cfeffd 0%,#bfe8ff 100%);box-sizing:border-box;overflow:hidden;border-radius:2px}
+    .cat-img img{width:100%;height:100%;object-fit:cover;display:block}
+
+    .carousel-btn{
+      position:absolute;
+      top:50%;
+      transform:translateY(-50%);
+      width:44px;height:44px;border-radius:50%;
+      display:flex;align-items:center;justify-content:center;
+      background:rgba(255,255,255,0.95);color:var(--text-brown);
+      border:none;box-shadow:0 2px 6px rgba(0,0,0,0.12);z-index:6;cursor:pointer;
+    }
+    .carousel-btn.prev{ left: 18px; }
+    .carousel-btn.next{ right: 18px; }
+
+    .categories-bottom-bar{display:none}
+
+    /* CUSTOMIZATION details */
+    .custom{height:440px;background:linear-gradient(rgba(0,0,0,0.18),rgba(0,0,0,0.18)),url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23a89278" width="1200" height="400"/></svg>');background-size:cover;display:flex;align-items:center;justify-content:center;position:relative;padding:20px}
+    .custom::before{content:'';position:absolute;inset:0;background:rgba(0,0,0,0.22)}
+    .custom-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:980px;padding:18px}
+    .custom-content h2{margin-bottom:8px;font-family:'Cormorant Garamond',serif;font-weight:400}
+    .custom-content p{margin-bottom:18px}
+    .btn-custom{background:#fff;color:var(--text-brown);padding:13px 35px;border-radius:28px;border:none;font-weight:600}
+
+    /* REVIEWS (restyled to match prototype) */
+    .reviews{padding:70px 60px;text-align:center;background:#efe7e1}
+    .reviews h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;color:var(--text-brown);margin-bottom:40px}
+    .reviews-carousel{max-width:900px;margin:0 auto;position:relative;display:flex;align-items:center;gap:25px}
+    .reviews-track{overflow:hidden;width:100%}
+    .reviews-list{display:flex;gap:24px;transition:transform .45s cubic-bezier(.22,.9,.36,1);will-change:transform}
+    .review-slide{flex:0 0 100%;display:flex;justify-content:center}
+    .review-card{width:100%;max-width:680px;background:#8b7355;color:#fff;padding:36px 32px;border-radius:15px;border:3px solid #4a3a2a;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px}
+    .review-avatar{width:70px;height:70px;border-radius:50%;background:#ebe5df;margin-bottom:18px}
+    .review-name{font-family:'Montserrat',sans-serif;font-weight:600;font-size:18px;margin-bottom:12px;color:#fff}
+    .review-text{font-size:15px;line-height:1.5;color:#fff;max-width:560px;text-align:center}
+    .review-line{width:60px;height:3px;background:#4a3a2a;margin-bottom:10px;border-radius:2px}
+    .reviews-btn{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,0.95);border:none;box-shadow:0 2px 6px rgba(0,0,0,0.12);z-index:6;cursor:pointer;color:var(--text-brown)}
+    .reviews-btn.prev{left:-6px}
+    .reviews-btn.next{right:-6px}
+    .reviews-dots{display:flex;justify-content:center;gap:10px;margin-top:18px}
+    .reviews-dot{width:10px;height:10px;border-radius:50%;background:#b5a393;cursor:pointer}
+    .reviews-dot.active{background:#4a3a2a}
+
+    /* INSTAGRAM */
+    .instagram{background:#b5a393;padding:48px 60px;text-align:center;position:relative}
+    .instagram h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;color:var(--text-brown);margin-bottom:6px}
+    .instagram p{margin-top:-12px;margin-bottom:18px;color:var(--text-brown);font-family:'Montserrat',sans-serif}
+    .ig-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1200px;margin:0 auto}
+    .ig{height:220px;background:#a89278;overflow:hidden;cursor:pointer}
+    .ig img{width:100%;height:100%;object-fit:cover;display:block}
+
+    /* FOOTER */
+    footer{background:#5a4a3a;color:#d4c4b0;padding:36px 40px 28px}
+    .footer-logo{text-align:center;margin-bottom:28px}
+    .footer-logo-text{display:flex;align-items:center;justify-content:center;gap:6px;font-family:'Cormorant Garamond',serif;font-weight:400;font-size:20px;color:#fff}
+    .footer-logo-text img{height:26px;margin-right:-8px}
+    .footer-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1300px;margin:0 auto}
+    footer h4{color:#fff;font-size:13px;font-weight:700;margin-bottom:16px;font-family:'Montserrat',sans-serif}
+    footer li,footer p{font-size:11px;line-height:1.5;margin-bottom:10px;font-family:'Montserrat',sans-serif}
+    footer ul{padding:0}
+    footer a{color:#d4c4b0;text-decoration:none}
+    .newsletter-form{display:flex;margin-top:10px}
+    input{flex:1;padding:10px 13px;border:none;background:#6f5b48;color:#fff;font-size:11px;font-family:'Montserrat',sans-serif}
+    input::placeholder{color:#a89278}
+    .newsletter-form button{padding:10px 20px;background:#8b7355;color:#fff;border:none;font-size:14px;cursor:pointer;font-family:'Montserrat',sans-serif}
+
+    /* Responsive */
+    @media (max-width:1024px){
+      .hero-title .s-mark{width:160px;height:160px;transform:scaleY(0.95) translateY(14px) translateX(18px); margin-right:-56px}
+      .hero-title .cg-text{font-size:160px}
+      .products-grid{grid-template-columns:repeat(2,1fr)}
+      .categories-container{flex-direction:column;padding:20px;min-height:auto}
+      .categories-title{writing-mode:horizontal-tb;transform:none;padding:6px 10px;font-size:20px}
+      .ig-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}
+      .custom{height:400px}
+    }
+    @media (max-width:768px){
+      .nav-links{display:none}
+      .hero-bags{display:none}
+      .hero-title .s-mark{width:90px;height:90px;transform:scaleY(0.95) translateY(8px) translateX(8px); margin-right:-36px}
+      .hero-title .cg-text{font-size:80px}
+      .products-grid{grid-template-columns:1fr}
+      .cat-img{height:220px}
+      .reviews-btn{display:none}
+      .footer-logo-text{font-size:18px}
+      .custom{height:360px;padding:16px}
+      .categories-images-wrapper{padding:0 40px} /* smaller gutter on narrow screens */
+      .slide{width:100%} /* full width on mobile */
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <div class="logo cg-display" aria-label="SUKBIT brand">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="#">SHOP NOW</a></li>
+        <li><a href="#">MY SUKBIT</a></li>
+        <li><a href="#">MORE INFO</a></li>
+      </ul>
+
+      <div class="nav-icons">
+        <span class="nav-icon">SEARCH</span>
+        <span class="nav-icon">ACCOUNT</span>
+        <span class="nav-icon">CART</span>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bags" id="heroBags" aria-hidden="true"></div>
+
+    <div class="hero-content">
+      <div class="hero-title-wrap">
+        <div class="hero-title" role="heading" aria-level="1">
+          <span class="s-mark" aria-hidden="true"></span>
+          <span class="cg-text">UKBIT</span>
+        </div>
+
+        <div class="hero-tagline cg-display">Lightweight, Functional and Versatile</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="font-info">
+    <h2 class="cg-display">SUKBIT (ITC Benguiat Condensed)</h2>
+    <p>DESCRIPTION (MONTSERRAT)</p>
+  </section>
+
+  <section class="products">
+    <div class="products-grid">
+      <div class="product"><div class="product-img"></div><h3 class="cg-display">NAME</h3><p>DESCRIPTION</p><div class="price">PRICE</div></div>
+      <div class="product"><div class="product-img"></div><h3 class="cg-display">NAME</h3><p>DESCRIPTION</p><div class="price">PRICE</div></div>
+      <div class="product"><div class="product-img"></div><h3 class="cg-display">NAME</h3><p>DESCRIPTION</p><div class="price">PRICE</div></div>
+      <div class="product"><div class="product-img"></div><h3 class="cg-display">NAME</h3><p>DESCRIPTION</p><div class="price">PRICE</div></div>
+    </div>
+  </section>
+
+  <section class="features">
+    <h2 class="cg-display">Features of the Product</h2>
+    <div class="features-grid">
+      <div class="feature-item"><h3 class="cg-display">LIGHTWEIGHT</h3></div>
+      <div class="feature-item"><h3 class="cg-display">FUNCTIONAL</h3></div>
+      <div class="feature-item"><h3 class="cg-display">VERSATILE</h3></div>
+    </div>
+    <p>DESCRIPTION</p>
+  </section>
+
+  <section class="categories">
+    <div class="categories-container">
+      <div class="categories-sidebar"><h2 class="categories-title cg-display">CATEGORIES</h2></div>
+
+      <div class="categories-right">
+        <div class="categories-top-bar"></div>
+
+        <div class="categories-main">
+          <div class="categories-desc-area">
+            <p class="categories-desc">DESCRIPTION/<br>LIST</p>
+            <span class="categories-arrow">◀</span>
+          </div>
+
+          <div class="categories-images-wrapper" id="categoriesWrapper" aria-label="Categories carousel">
+            <button class="carousel-btn prev" data-role="prev" aria-label="Previous">&lsaquo;</button>
+
+            <div class="categories-images" id="categoriesImages" role="list">
+              <div class="slide" role="listitem"><div class="cat-img"><img src="https://via.placeholder.com/1200x900?text=Image+1" alt=""></div></div>
+              <div class="slide" role="listitem"><div class="cat-img"><img src="https://via.placeholder.com/1200x900?text=Image+2" alt=""></div></div>
+              <div class="slide" role="listitem"><div class="cat-img"><img src="https://via.placeholder.com/1200x900?text=Image+3" alt=""></div></div>
+              <div class="slide" role="listitem"><div class="cat-img"><img src="https://via.placeholder.com/1200x900?text=Image+4" alt=""></div></div>
+            </div>
+
+            <button class="carousel-btn next" data-role="next" aria-label="Next">&rsaquo;</button>
+          </div>
+        </div>
+
+        <div class="categories-bottom-bar"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="custom">
+    <div class="custom-content">
+      <h2 class="cg-display">Customization Option</h2>
+      <p>description</p>
+      <button class="btn-custom">Customize My Sukbit</button>
+    </div>
+  </section>
+
+  <section class="reviews">
+    <h2 class="cg-display">Reviews</h2>
+
+    <div class="reviews-carousel" id="reviewsCarousel">
+      <button class="reviews-btn prev" data-role="prev" aria-label="Previous review">&lsaquo;</button>
+
+      <div class="reviews-track">
+        <div class="reviews-list" id="reviewsList">
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-avatar"></div>
+              <div class="review-name">Ana</div>
+              <div class="review-line"></div>
+              <div class="review-text">"Beautiful craftsmanship and lightweight. Love the color and the strap feels sturdy."</div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-avatar"></div>
+              <div class="review-name">Ben</div>
+              <div class="review-line"></div>
+              <div class="review-text">"Great for travel — fits everything I need. The bag is very functional."</div>
+            </div>
+          </div>
+
+          <div class="review-slide">
+            <div class="review-card">
+              <div class="review-avatar"></div>
+              <div class="review-name">Carmen</div>
+              <div class="review-line"></div>
+              <div class="review-text">"Nice colors and sturdy straps. Excellent customer service."</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="reviews-btn next" data-role="next" aria-label="Next review">&rsaquo;</button>
+    </div>
+
+    <div class="reviews-dots" id="reviewsDots"></div>
+  </section>
+
+  <section class="instagram">
+    <h2 class="cg-display">Follow us on Instagram</h2>
+    <p>@sukbitph</p>
+    <div class="ig-grid">
+      <div class="ig"></div>
+      <div class="ig"></div>
+      <div class="ig"></div>
+      <div class="ig"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-logo">
+      <div class="footer-logo-text cg-display">
+        <img src="0792775b-b60a-4221-aeab-c489c138b104-removebg-preview.png" alt="S mark">
+        <span>UKBIT</span>
+      </div>
+    </div>
+
+    <div class="footer-grid">
+      <div>
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" style="color:#d4c4b0">Search our Website</a></li>
+          <li><a href="#" style="color:#d4c4b0">About Us</a></li>
+          <li><a href="#" style="color:#d4c4b0">FAQ</a></li>
+          <li><a href="#" style="color:#d4c4b0">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact Us</h4>
+        <p>For inquiries and bulk orders,</p>
+        <p>email us at</p>
+        <p>shop@sukbitph.com</p>
+        <p style="margin-top:12px">Phone Number:</p>
+        <p>(63) 09123-4567</p>
+      </div>
+
+      <div>
+        <h4>Payment Options</h4>
+        <ul>
+          <li>Gcash</li>
+          <li>BDO</li>
+          <li>BPI</li>
+          <li>VISA CARD</li>
+          <li>MASTERCARD</li>
+          <li>PAYPAL</li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Visit Us</h4>
+        <p>Philippines at ...</p>
+        <h4 style="margin-top:20px">Subscribe to our emails</h4>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email">
+          <button type="submit">→</button>
+        </form>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Simple carousel for categories - no complex sizing
+    document.addEventListener('DOMContentLoaded', () => {
+      (function initCategories() {
+        const wrapper = document.getElementById('categoriesWrapper');
+        const track = document.getElementById('categoriesImages');
+        if (!wrapper || !track) return;
+        const prevBtn = wrapper.querySelector('[data-role="prev"]');
+        const nextBtn = wrapper.querySelector('[data-role="next"]');
+        const slides = Array.from(track.children);
+        
+        let currentIndex = 0;
+        const slidesToShow = window.innerWidth < 768 ? 1 : 2;
+        
+        function updateCarousel() {
+          const slideWidth = slides[0].offsetWidth;
+          const gap = 28; // matches CSS variable
+          const offset = currentIndex * (slideWidth + gap);
+          track.style.transform = `translateX(-${offset}px)`;
+          
+          // Update buttons
+          if (prevBtn) prevBtn.disabled = currentIndex <= 0;
+          if (nextBtn) nextBtn.disabled = currentIndex >= slides.length - slidesToShow;
+        }
+        
+        function next() {
+          if (currentIndex < slides.length - slidesToShow) {
+            currentIndex++;
+            updateCarousel();
+          }
+        }
+        
+        function prev() {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        }
+        
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+        if (nextBtn) nextBtn.addEventListener('click', next);
+        
+        // Initialize
+        setTimeout(updateCarousel, 100);
+        
+        // Handle resize
+        window.addEventListener('resize', () => {
+          setTimeout(updateCarousel, 100);
+        });
+      })();
+
+      (function initReviews() {
+        const root = document.getElementById('reviewsCarousel');
+        if (!root) return;
+        const wrapper = root.querySelector('.reviews-track');
+        const track = document.getElementById('reviewsList');
+        if (!wrapper || !track) return;
+        const prevBtn = root.querySelector('.reviews-btn.prev');
+        const nextBtn = root.querySelector('.reviews-btn.next');
+        const dots = document.getElementById('reviewsDots');
+        const slides = Array.from(track.children);
+        
+        let currentIndex = 0;
+        
+        function updateReviews() {
+          const slideWidth = slides[0].offsetWidth;
+          const gap = 24;
+          const offset = currentIndex * (slideWidth + gap);
+          track.style.transform = `translateX(-${offset}px)`;
+          
+          if (prevBtn) prevBtn.disabled = currentIndex <= 0;
+          if (nextBtn) nextBtn.disabled = currentIndex >= slides.length - 1;
+          
+          // Update dots
+          if (dots) {
+            dots.innerHTML = '';
+            slides.forEach((_, i) => {
+              const dot = document.createElement('button');
+              dot.className = 'reviews-dot';
+              if (i === currentIndex) dot.classList.add('active');
+              dot.addEventListener('click', () => {
+                currentIndex = i;
+                updateReviews();
+              });
+              dots.appendChild(dot);
+            });
+          }
+        }
+        
+        function next() {
+          if (currentIndex < slides.length - 1) {
+            currentIndex++;
+            updateReviews();
+          }
+        }
+        
+        function prev() {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateReviews();
+          }
+        }
+        
+        if (prevBtn) prevBtn.addEventListener('click', prev);
+        if (nextBtn) nextBtn.addEventListener('click', next);
+        
+        // Initialize
+        setTimeout(updateReviews, 100);
+      })();
+    });
+  </script>
+</body>
+</html>
